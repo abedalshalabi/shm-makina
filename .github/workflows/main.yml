@@ -1,0 +1,66 @@
+name: 🚀 Auto Deploy to cPanel via FTP
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧭 Checkout repository
+        uses: actions/checkout@v3
+
+      # ========== إعداد Laravel ==========
+      - name: ⚙️ Install PHP & Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: mbstring, pdo, tokenizer, xml, ctype, json, bcmath, gd
+          coverage: none
+
+      - name: 📦 Install Composer dependencies
+        run: |
+          cd backend
+          composer install --no-dev --optimize-autoloader
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+          php artisan config:clear
+
+      # ========== إعداد React ==========
+      - name: 🧰 Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 🧱 Build React frontend
+        env:
+          VITE_FRONTEND_URL: ${{ secrets.VITE_FRONTEND_URL }}
+          VITE_BACKEND_PUBLIC_URL: ${{ secrets.VITE_BACKEND_PUBLIC_URL }}
+          VITE_FACEBOOK_PIXEL_ID: ${{ secrets.VITE_FACEBOOK_PIXEL_ID }}
+        run: |
+          npm install
+          npm run build
+          cp -r dist/spa/* backend/public/
+
+      # ========== رفع الملفات عبر FTP ==========
+      - name: 📤 Deploy to cPanel (FTP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ./V1/shm/
+          local-dir: backend/
+          exclude: |
+            **/.git*
+            **/.github*
+            **/node_modules/**
+            **/tests/**
+            **/storage/logs/**
+            **/storage/framework/cache/**
+            **/storage/framework/sessions/**
+            **/storage/framework/views/**
