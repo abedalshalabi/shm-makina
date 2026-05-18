@@ -2225,7 +2225,7 @@ const Products = () => {
             aria-label="فتح الفلاتر"
           >
             <SlidersHorizontal className="h-5 w-5 flex-shrink-0" />
-            <span className="text-sm font-semibold">اختر القياس</span>
+            <span className="text-sm font-semibold">فلتر</span>
             {hasActiveFilters && (
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold animate-pulse">
                 !
