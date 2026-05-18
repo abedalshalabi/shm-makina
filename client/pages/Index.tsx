@@ -682,7 +682,7 @@ const Index = () => {
       "url": siteUrl,
       "logo": logoUrl,
       "image": logoUrl,
-      "description": seoSettings.seo_meta_description || `متجر متخصص في ملابس وألعاب الأطفال${siteName ? ` في ${siteName}` : ''}.`,
+      "description": seoSettings.seo_meta_description || `أكبر موقع إلكتروني لتجارة جميع أنواع العدد الأصلية والمعدات الصناعية${siteName ? ` في ${siteName}` : ''}.`,
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "PS"
@@ -703,7 +703,7 @@ const Index = () => {
       "@type": "LocalBusiness",
       "name": siteName || "",
       "image": logoUrl,
-      "description": seoSettings.seo_meta_description || `متجر ملابس وألعاب الأطفال${siteName ? ` في ${siteName}` : ''}.`,
+      "description": seoSettings.seo_meta_description || `متجر العدد الأصلية والمعدات الصناعية${siteName ? ` في ${siteName}` : ''}.`,
       "url": siteUrl,
       "telephone": socialSettings.header_phone || "",
       "address": {
@@ -738,7 +738,7 @@ const Index = () => {
       "@context": "https://schema.org",
       "@type": "Store",
       "name": siteName || generalSettings.site_name || "",
-      "description": seoSettings.seo_meta_description || `متجر متخصص في ملابس وألعاب الأطفال${(siteName || generalSettings.site_name) ? ` في ${siteName || generalSettings.site_name}` : ''}.`,
+      "description": seoSettings.seo_meta_description || `أكبر موقع لتجارة جميع أنواع العدد الأصلية للإنشاءات والصناعات${(siteName || generalSettings.site_name) ? ` في ${siteName || generalSettings.site_name}` : ''}.`,
       "url": siteUrl,
       "logo": logoUrl,
       "image": logoUrl,
@@ -780,8 +780,8 @@ const Index = () => {
     <div className="min-h-screen bg-gray-50 arabic">
       <SEO
         title={seoSettings.seo_meta_title || (siteName ? `${siteName} - ${generalSettings.site_tagline || ""}` : "الرئيسية")}
-        description={seoSettings.seo_meta_description || `تسوق أفضل ملابس وألعاب الأطفال${siteName ? ` في ${siteName}` : ''}. جودة عالية وتوصيل سريع.`}
-        keywords={seoSettings.seo_meta_keywords || `ملابس أطفال, ألعاب أطفال, تسوق${siteName ? `, ${siteName}` : ''}`}
+        description={seoSettings.seo_meta_description || `تسوق أفضل وأجود أنواع العدد الأصلية والمعدات الصناعية${siteName ? ` في ${siteName}` : ''}. ضمان حقيقي وأسعار منافسة.`}
+        keywords={seoSettings.seo_meta_keywords || `عدد أصلية, معدات صناعية, أدوات بناء, تسوق${siteName ? `, ${siteName}` : ''}`}
         image={getStorageUrl(headerLogo) || '/logo.webp'}
         structuredData={structuredDataArray}
       />
@@ -801,7 +801,7 @@ const Index = () => {
             <div className="rounded-2xl md:rounded-none overflow-hidden shadow-md md:shadow-none relative z-0 transform-gpu">
               <Carousel
                 slidesToShow={{ mobile: 1, tablet: 1, desktop: 1 }}
-                showDots={false}
+                showDots={true}
                 showArrows={true}
                 gap={0}
                 autoplay={true}
@@ -810,7 +810,7 @@ const Index = () => {
                 {sliderItems.map((item) => (
                   <div
                     key={item.id}
-                    className={`hero-slide-mobile-fit relative ${item.text_color} py-0 sm:py-16 lg:py-24 overflow-hidden min-h-0 sm:min-h-[450px] lg:min-h-[600px] flex items-end sm:items-center justify-start`}
+                    className={`hero-slide-mobile-fit relative ${item.text_color} overflow-hidden h-[300px] sm:h-[400px] lg:h-[480px] flex items-end sm:items-center justify-start`}
                     style={item.image ? {
                       backgroundImage: `url(${getStorageUrl(item.image)})`,
                       backgroundSize: 'cover',
@@ -824,20 +824,23 @@ const Index = () => {
                       <div className={`absolute inset-0 bg-gradient-to-r ${item.background_color} z-0 pointer-events-none`}></div>
                     )}
 
-                    <div className="container mx-auto px-2.5 sm:px-6 lg:px-8 relative z-10 w-full h-full flex items-end sm:items-center">
-                      <div className="hero-slide-mobile-content max-w-[98%] sm:max-w-2xl w-full pr-0 sm:pr-8 lg:pr-12 pb-0 sm:pb-0 relative z-10">
+                    <div className="w-full px-4 sm:px-12 lg:px-24 relative z-10 h-full flex items-end sm:items-center pb-8 sm:pb-0">
+                      <div className="hero-slide-mobile-content max-w-[98%] sm:max-w-xl w-full p-3 sm:p-5 lg:p-6 bg-black/50 backdrop-blur-sm rounded-3xl border border-white/10 relative z-10 shadow-2xl mr-0 md:mr-8 lg:mr-12 xl:mr-16">
                         {item.title && (
-                          <h2 className="hero-slide-mobile-title text-lg sm:text-5xl lg:text-7xl font-extrabold mb-1.5 sm:mb-6 lg:mb-8 leading-snug sm:leading-tight tracking-tight text-gray-900 drop-shadow-md">
+                          <h2 
+                            className="hero-slide-mobile-title text-lg sm:text-3xl lg:text-4xl font-extrabold mb-1 sm:mb-3 lg:mb-4 tracking-normal text-inherit drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]"
+                            style={{ lineHeight: '1.5' }}
+                          >
                             {item.title}
                             {item.subtitle && (
-                              <span className="hero-slide-mobile-subtitle block w-fit mt-1 sm:mt-4 lg:mt-6 text-xs sm:text-3xl lg:text-4xl text-emerald-800 font-bold drop-shadow-md bg-white/90 backdrop-blur-md px-2.5 py-1 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl border border-white/50">
+                              <span className="hero-slide-mobile-subtitle block w-fit mt-1 sm:mt-2 lg:mt-3 text-xs sm:text-xl lg:text-2xl text-gray-900 font-extrabold shadow-lg bg-white/95 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl border border-white/50">
                                 {item.subtitle}
                               </span>
                             )}
                           </h2>
                         )}
                         {item.description && (
-                          <p className="hero-slide-mobile-description text-[11px] sm:text-lg lg:text-2xl mb-2.5 sm:mb-8 lg:mb-10 leading-relaxed text-gray-800 font-semibold drop-shadow max-w-[100%] sm:max-w-xl">
+                          <p className="hero-slide-mobile-description text-[11px] sm:text-sm lg:text-base mb-2.5 sm:mb-4 lg:mb-6 leading-relaxed text-gray-100 font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] max-w-[100%] sm:max-w-lg">
                             {item.description}
                           </p>
                         )}
@@ -891,14 +894,14 @@ const Index = () => {
               {Array.from({ length: Math.ceil(mainCategories.length / 12) }, (_, i) => {
                 const pageItems = mainCategories.slice(i * 12, i * 12 + 12);
                 return (
-                  <div key={i} className="flex flex-wrap justify-center gap-4 md:gap-8 py-4">
+                  <div key={i} className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 py-4">
                     {pageItems.map((category, idx) => (
                       <Link
                         key={category.id || `${i}-${idx}`}
                         to={category.href}
                         className="group flex flex-col items-center gap-2 transition-all duration-300"
                       >
-                        <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white shadow-md group-hover:shadow-xl group-hover:border-emerald-500 transition-all duration-500 transform group-hover:scale-105">
+                        <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-48 xl:h-48 rounded-full overflow-hidden border-4 border-gray-200 shadow-md group-hover:shadow-xl group-hover:border-red-700 transition-all duration-500 transform group-hover:scale-105">
                           <img
                             src={category.image}
                             alt={category.name}
@@ -907,7 +910,7 @@ const Index = () => {
                           />
                           <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors" />
                         </div>
-                        <h3 className="text-xs sm:text-sm md:text-base font-bold text-gray-800 text-center transition-all duration-300 group-hover:text-emerald-600 line-clamp-1">
+                        <h3 className="text-xs sm:text-sm md:text-base font-bold text-gray-800 text-center transition-all duration-300 group-hover:text-red-700 line-clamp-1">
                           {category.name}
                         </h3>
                       </Link>
@@ -924,7 +927,7 @@ const Index = () => {
         <div className="mt-10 text-center">
           <Link
             to="/categories"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold shadow-lg hover:shadow-xl hover:from-emerald-500 hover:to-teal-500 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-red-800 to-red-600 text-white font-semibold shadow-lg hover:shadow-xl hover:from-red-700 hover:to-red-500 transition-all duration-300"
           >
             عرض جميع التصنيفات
             <ChevronRight className="w-4 h-4" />

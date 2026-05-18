@@ -388,7 +388,7 @@ const Header = ({
       </div>
 
       {/* Main Header */}
-      <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+      <div className="container mx-auto px-3 sm:px-4 py-1 sm:py-1.5">
         <div className="flex items-center justify-between gap-2 sm:gap-4">
           {/* Back Button or Logo */}
           {showBackButton ? (
@@ -400,13 +400,13 @@ const Header = ({
               <span className="hidden sm:inline">{backButtonText}</span>
             </Link>
           ) : (
-            <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+            <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0 -mr-4 sm:-mr-8 lg:-mr-16 xl:-mr-24">
               <Link to="/" className="flex items-center gap-3 sm:gap-4">
                 {settings.header_logo && (
                   <img
                     src={getStorageUrl(settings.header_logo)}
                     alt={settings.header_title || ""}
-                    className="h-6 sm:h-8 md:h-10 w-auto object-contain"
+                    className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
                     style={{ minWidth: "24px" }}
                     loading="eager"
                     fetchPriority="high"
@@ -430,12 +430,12 @@ const Header = ({
 
           {/* Logo for back button pages */}
           {showBackButton && (
-            <Link to="/" className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+            <Link to="/" className="flex items-center gap-3 sm:gap-4 flex-shrink-0 -mr-4 sm:-mr-8 lg:-mr-16 xl:-mr-24">
               {settings.header_logo && (
                 <img
                   src={getStorageUrl(settings.header_logo)}
                   alt={settings.header_title || ""}
-                  className="h-6 sm:h-8 md:h-10 w-auto object-contain"
+                  className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
                   style={{ minWidth: "24px" }}
                   loading="eager"
                   fetchPriority="high"
@@ -458,7 +458,7 @@ const Header = ({
 
           {/* Search Bar */}
           {showSearch && (
-            <form onSubmit={handleSearch} className="flex-1 max-w-xl mx-1 sm:mx-2 md:mx-4 lg:mx-8">
+            <form onSubmit={handleSearch} className="flex-1 max-w-md mx-1 sm:mx-2 md:mx-4 lg:mx-8">
               <div className="relative">
                 <input
                   type="text"

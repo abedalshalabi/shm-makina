@@ -205,19 +205,19 @@
 
   /* Abu Zaina Brand colors */
   .bg-brand-blue {
-    background-color: #C4B59B;
+    background-color: #A32A2A;
   }
 
   .bg-brand-blue-dark {
-    background-color: #AC9D7F;
+    background-color: #8A1F1F;
   }
 
   .bg-brand-indigo {
-    background-color: #948563;
+    background-color: #525252;
   }
 
   .bg-brand-cyan {
-    background-color: #DDCFBA;
+    background-color: #737373;
   }
 
   .bg-brand-light {
@@ -225,23 +225,23 @@
   }
 
   .bg-brand-gradient {
-    background: linear-gradient(135deg, #C4B59B 0%, #948563 100%);
+    background: linear-gradient(135deg, #A32A2A 0%, #525252 100%);
   }
 
   .text-brand-blue {
-    color: #C4B59B;
+    color: #A32A2A;
   }
 
   .text-brand-blue-dark {
-    color: #AC9D7F;
+    color: #8A1F1F;
   }
 
   .text-brand-indigo {
-    color: #948563;
+    color: #525252;
   }
 
   .text-brand-cyan {
-    color: #DDCFBA;
+    color: #737373;
   }
 
   .text-brand-white {
@@ -254,7 +254,7 @@
   }
 
   .gradient-bg {
-    background: linear-gradient(135deg, #C4B59B 0%, #948563 100%);
+    background: linear-gradient(135deg, #A32A2A 0%, #525252 100%);
   }
 
   /* Carousel improvements */
@@ -544,7 +544,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #C4B59B;
+    color: #A32A2A;
   }
 
   .swiper-button-next:after,
@@ -597,7 +597,7 @@
 
   .swiper-pagination-bullet-active {
     opacity: 1;
-    background: #C4B59B;
+    background: #A32A2A;
   }
 
   /* Coverflow Effect */

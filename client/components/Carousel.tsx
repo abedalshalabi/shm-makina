@@ -83,7 +83,7 @@ const Carousel: React.FC<CarouselProps> = ({
       } else {
         emblaApi.scrollTo(0)
       }
-    }, 4000)
+    }, 8000)
 
     return () => clearInterval(autoplayInterval)
   }, [emblaApi, autoplay, isHovered])
@@ -116,7 +116,7 @@ const Carousel: React.FC<CarouselProps> = ({
       {showArrows && (
         <>
           <button
-            className={`absolute right-1 md:-right-12 top-1/2 -translate-y-1/2 z-10 p-1.5 md:p-2 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg border border-gray-100 transition-all duration-300 flex items-center justify-center ${(rtl ? !canScrollPrev : !canScrollNext) ? 'opacity-0 pointer-events-none' : 'hover:scale-110 active:scale-95'
+            className={`absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg border border-gray-100 transition-all duration-300 flex items-center justify-center ${(rtl ? !canScrollPrev : !canScrollNext) ? 'opacity-0 pointer-events-none' : 'hover:scale-110 active:scale-95'
               }`}
             onClick={rtl ? scrollPrev : scrollNext}
             disabled={rtl ? !canScrollPrev : !canScrollNext}
@@ -125,7 +125,7 @@ const Carousel: React.FC<CarouselProps> = ({
             <ChevronRight className="w-5 h-5 md:w-7 md:h-7" />
           </button>
           <button
-            className={`absolute left-1 md:-left-12 top-1/2 -translate-y-1/2 z-10 p-1.5 md:p-2 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg border border-gray-100 transition-all duration-300 flex items-center justify-center ${(rtl ? !canScrollNext : !canScrollPrev) ? 'opacity-0 pointer-events-none' : 'hover:scale-110 active:scale-95'
+            className={`absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg border border-gray-100 transition-all duration-300 flex items-center justify-center ${(rtl ? !canScrollNext : !canScrollPrev) ? 'opacity-0 pointer-events-none' : 'hover:scale-110 active:scale-95'
               }`}
             onClick={rtl ? scrollNext : scrollPrev}
             disabled={rtl ? !canScrollNext : !canScrollPrev}
@@ -180,15 +180,15 @@ const Carousel: React.FC<CarouselProps> = ({
         </div>
       )}
 
-      {/* Dots Navigation - Moved to relative below for better visibility */}
+      {/* Dots Navigation */}
       {showDots && scrollSnaps.length > 1 && (
-        <div className="flex justify-center mt-8 md:mt-12 gap-2 z-10">
+        <div className={`flex justify-center gap-2 z-20 ${currentSlidesToShow === 1 ? 'absolute bottom-4 left-1/2 -translate-x-1/2' : 'mt-8 md:mt-12'}`}>
           {scrollSnaps.map((_, index) => (
             <button
               key={index}
               className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all duration-300 ${index === selectedIndex
                   ? 'bg-emerald-600 w-4 md:w-6'
-                  : 'bg-gray-300 hover:bg-gray-400'
+                  : (currentSlidesToShow === 1 ? 'bg-white/70 hover:bg-white shadow-sm' : 'bg-gray-300 hover:bg-gray-400')
                 }`}
               onClick={() => scrollTo(index)}
               aria-label={`الانتقال للشريحة ${index + 1}`}
