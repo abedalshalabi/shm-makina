@@ -14,6 +14,7 @@ interface CarouselProps {
   autoplay?: boolean
   rtl?: boolean
   gap?: number
+  hideMobileIndicators?: boolean
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -23,7 +24,8 @@ const Carousel: React.FC<CarouselProps> = ({
   showArrows = true,
   autoplay = false,
   rtl = true,
-  gap = 8
+  gap = 8,
+  hideMobileIndicators = false
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
@@ -137,7 +139,7 @@ const Carousel: React.FC<CarouselProps> = ({
       )}
 
       {/* Mobile Swipe Indicator */}
-      {showDots && (
+      {showDots && !hideMobileIndicators && (
         <div className="md:hidden text-center mb-2 sm:mb-4">
           <div className="inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500 bg-gray-100 px-2 sm:px-3 py-1 rounded-full">
             <span className="text-sm sm:text-base">👆</span>
@@ -169,7 +171,7 @@ const Carousel: React.FC<CarouselProps> = ({
       </div>
 
       {/* Progress Bar for Mobile */}
-      {showDots && (
+      {showDots && !hideMobileIndicators && (
         <div className="md:hidden mt-2 sm:mt-4 mx-4 bg-gray-200 rounded-full h-1 overflow-hidden">
           <div
             className="bg-emerald-600 h-full transition-all duration-300 ease-out"
@@ -182,7 +184,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
       {/* Dots Navigation */}
       {showDots && scrollSnaps.length > 1 && (
-        <div className={`flex justify-center gap-2 z-20 ${currentSlidesToShow === 1 ? 'absolute bottom-4 left-1/2 -translate-x-1/2' : 'mt-8 md:mt-12'}`}>
+        <div className={`flex justify-center gap-2 z-20 ${currentSlidesToShow === 1 ? 'absolute bottom-4 left-1/2 -translate-x-1/2' : 'mt-8 md:mt-12'} ${hideMobileIndicators ? 'hidden md:flex' : ''}`}>
           {scrollSnaps.map((_, index) => (
             <button
               key={index}
@@ -198,7 +200,7 @@ const Carousel: React.FC<CarouselProps> = ({
       )}
 
       {/* Slide Counter for Mobile - Updated position */}
-      {showDots && (
+      {showDots && !hideMobileIndicators && (
         <div className="md:hidden text-center mt-2">
           <span className="text-[10px] text-gray-400">
             {selectedIndex + 1} / {scrollSnaps.length}

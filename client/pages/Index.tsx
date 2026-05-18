@@ -806,6 +806,7 @@ const Index = () => {
                 gap={0}
                 autoplay={true}
                 rtl={true}
+                hideMobileIndicators={true}
               >
                 {sliderItems.map((item) => (
                   <div
