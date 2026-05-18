@@ -796,7 +796,7 @@ const Offers = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
               {flashDeals.map(offer => (
                 <FlashDealCard key={offer.id} offer={offer} />
               ))}
@@ -817,7 +817,7 @@ const Offers = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6 lg:grid-cols-5 lg:gap-4">
               {weeklyDeals.map(offer => (
                 <ProductCard key={offer.id} offer={offer} />
               ))}

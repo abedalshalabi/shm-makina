@@ -174,11 +174,11 @@ class OrderPlacedMail extends Mailable
         }
 
         if (is_array($first)) {
-            return $first['image_path'] ?? $first['image_url'] ?? null;
+            return !empty($first['image_path']) ? $first['image_path'] : ($first['image_url'] ?? null);
         }
 
         if (is_object($first)) {
-            return $first->image_path ?? $first->image_url ?? null;
+            return !empty($first->image_path) ? $first->image_path : ($first->image_url ?? null);
         }
 
         return null;

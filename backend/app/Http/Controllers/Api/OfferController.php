@@ -75,13 +75,13 @@ class OfferController extends Controller
                 // Determine image
                 $firstImage = null;
                 if ($product->cover_image) {
-                    $firstImage = $product->cover_image;
+                    $firstImage = \App\Support\MediaUrl::publicUrl($product->cover_image);
                 } elseif ($product->images && is_array($product->images) && count($product->images) > 0) {
                     $firstImageObj = $product->images[0];
                     if (is_string($firstImageObj)) {
-                        $firstImage = $firstImageObj;
+                        $firstImage = \App\Support\MediaUrl::publicUrl($firstImageObj);
                     } elseif (is_array($firstImageObj) && isset($firstImageObj['image_url'])) {
-                        $firstImage = $firstImageObj['image_url'];
+                        $firstImage = \App\Support\MediaUrl::publicUrl($firstImageObj['image_url']);
                     }
                 }
 

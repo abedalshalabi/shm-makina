@@ -44,7 +44,7 @@ class OfferResource extends JsonResource
                 }
 
                 $firstImage = null;
-                if ($product->images && is_array($product->images) && count($product->images) > 0) {
+                if (!empty($product->cover_image)) { $firstImage = \App\Support\MediaUrl::publicUrl($product->cover_image); } elseif ($product->images && is_array($product->images) && count($product->images) > 0) {
                     $firstImageObj = $product->images[0];
                     if (is_string($firstImageObj)) {
                         $firstImage = MediaUrl::publicUrl($firstImageObj);
@@ -81,7 +81,7 @@ class OfferResource extends JsonResource
                     $product = \App\Models\Product::find($productId);
                     if ($product && $product->is_active) {
                         $firstImage = null;
-                        if ($product->images && is_array($product->images) && count($product->images) > 0) {
+                        if (!empty($product->cover_image)) { $firstImage = \App\Support\MediaUrl::publicUrl($product->cover_image); } elseif ($product->images && is_array($product->images) && count($product->images) > 0) {
                             $firstImageObj = $product->images[0];
                             if (is_string($firstImageObj)) {
                                 $firstImage = MediaUrl::publicUrl($firstImageObj);
@@ -110,7 +110,7 @@ class OfferResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'type' => $this->type,
-            'image' => $this->image,
+            'image' => \App\Support\MediaUrl::publicUrl($this->image),
             'discount_percentage' => $this->discount_percentage ? (float) $this->discount_percentage : null,
             'fixed_discount' => $this->fixed_discount ? (float) $this->fixed_discount : null,
             'starts_at' => $this->starts_at->toIso8601String(),
