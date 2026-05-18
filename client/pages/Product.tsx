@@ -829,8 +829,8 @@ const Product = () => {
       return () => (window as any).cancelIdleCallback?.(id);
     }
 
-    const timer = window.setTimeout(deferLoad, 300);
-    return () => window.clearTimeout(timer);
+    const timer = setTimeout(deferLoad, 300);
+    return () => clearTimeout(timer);
   }, [product, galleryImages]);
 
   const nextImage = () => {
@@ -1428,17 +1428,19 @@ const Product = () => {
                       )}
                     </div>
                   </div>
-
-                  {showWhatsAppOrderButton && (
-                    <button
-                      onClick={handleWhatsAppOrder}
-                      className="w-full bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition-colors flex items-center justify-center gap-2 font-semibold"
-                    >
-                      <MessageCircle className="w-5 h-5" />
-                      طلب عبر واتساب
-                    </button>
-                  )}
                 </div>
+              </div>
+            )}
+
+            {showWhatsAppOrderButton && (
+              <div className="pt-2">
+                <button
+                  onClick={handleWhatsAppOrder}
+                  className="w-full bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition-colors flex items-center justify-center gap-2 font-semibold"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  طلب عبر واتساب
+                </button>
               </div>
             )}
 
