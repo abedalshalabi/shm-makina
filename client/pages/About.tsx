@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Heart, Mail, MapPin, Phone, Shield, Target, Zap } from "lucide-react";
 import Header from "../components/Header";
 import SEO from "../components/SEO";
@@ -59,18 +59,13 @@ const About = () => {
         console.error("Error loading about settings:", error);
         setSettings({
           about_hero_title: "من نحن",
-          about_hero_description: `نحن وجهة متخصصة في بيع ملابس الأطفال بجودة عالية وتصاميم عصرية${siteName ? ` في ${siteName}` : ""}`,
+          about_hero_description: siteName ? `مرحباً بكم في ${siteName}` : "",
           about_story_content: {
             title: "قصتنا",
-            description: `بدأنا بهدف بسيط: توفير ملابس أطفال جميلة، عملية، ومريحة للأهالي والأطفال مع تجربة شراء موثوقة وسهلة${siteName ? ` في ${siteName}` : ""}.`,
-            image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop",
+            description: "",
+            image: "/logo.webp",
           },
-          about_values: [
-            { title: "جودة موثوقة", description: "نختار منتجاتنا بعناية لتناسب الأطفال وتلبي توقعات الأهل.", icon: "target" },
-            { title: "راحة الطفل", description: "نهتم بالخامات والتفاصيل التي تمنح الطفل راحة طوال اليوم.", icon: "heart" },
-            { title: "تجديد مستمر", description: "نواكب الموديلات الجديدة ونضيف تشكيلات مناسبة لكل موسم.", icon: "zap" },
-            { title: "ثقة وأمان", description: "نحرص على تجربة شراء واضحة وآمنة وخدمة تليق بعملائنا.", icon: "shield" },
-          ],
+          about_values: [],
         });
       } finally {
         setLoading(false);
@@ -195,7 +190,7 @@ const About = () => {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-12">
             <div>
               <div className="mb-6 flex items-center gap-3">
-                <img src={getStorageUrl(headerLogo) || "/logo.webp"} alt={siteName || "Ropita"} className="h-8 w-auto" />
+                <img src={getStorageUrl(headerLogo) || "/logo.webp"} alt={siteName || ""} className="h-8 w-auto" />
                 <div>
                   <h3 className="text-xl font-bold text-gray-800">{siteName || generalSettings.site_name || ""}</h3>
                   <p className="text-xs font-medium text-gray-500">{generalSettings.site_tagline || ""}</p>

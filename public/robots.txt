@@ -8,4 +8,4 @@ Disallow: /login
 Disallow: /register
 
 # Sitemap
-Sitemap: https://ropita.ps/sitemap.xml
+Sitemap: https://shm-makina.ps/sitemap.xml

@@ -192,28 +192,28 @@ const Contact = () => {
       {
         icon: <Phone className="w-6 h-6" />,
         title: "الهاتف",
-        details: phoneNumbers.length > 0 ? phoneNumbers : ["+970 599 000 000"],
+        details: phoneNumbers,
         color: "text-green-600"
       },
       {
         icon: <Mail className="w-6 h-6" />,
         title: "البريد الإلكتروني",
-        details: emailAddresses.length > 0 ? emailAddresses : ["info@ropita.com"],
+        details: emailAddresses,
         color: "text-emerald-600"
       },
       {
         icon: <MapPin className="w-6 h-6" />,
         title: "العنوان",
-        details: addressLines.length > 0 ? addressLines : ["شارع الحرية، جنين"],
+        details: addressLines,
         color: "text-red-600"
       },
       {
         icon: <Clock className="w-6 h-6" />,
         title: "ساعات العمل",
-        details: workingHours.length > 0 ? workingHours : ["السبت - الخميس: 9:00 ص - 10:00 م"],
+        details: workingHours,
         color: "text-purple-600"
       }
-    ];
+    ].filter(info => info.details.length > 0);
   }
 
   const services = settings.contact_services || [

@@ -214,12 +214,13 @@ Route::match(['GET', 'POST'], '/maintenance/test-mail', function (Request $reque
     }
 
     try {
+        $siteName = DB::table('site_settings')->where('key', 'site_name')->value('value') ?? 'SHM';
         Mail::raw(
-            "This is a test email from Ropita.\nSent at: " . now()->toDateTimeString() . "\nMailer: " . config('mail.default'),
-            function ($message) use ($to) {
+            "This is a test email from {$siteName}.\nSent at: " . now()->toDateTimeString() . "\nMailer: " . config('mail.default'),
+            function ($message) use ($to, $siteName) {
                 $message
                     ->to($to)
-                    ->subject('Ropita Test Email');
+                    ->subject("{$siteName} Test Email");
             }
         );
 

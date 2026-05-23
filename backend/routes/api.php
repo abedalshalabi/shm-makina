@@ -68,7 +68,7 @@ Route::prefix('v1')->group(function () {
             'success' => true,
             'messages' => $messages,
             'instructions' => [
-                '1. Check cPanel Hotlink Protection: Make sure it is disabled or that ropita.ps is in the allowed list.',
+                '1. Check cPanel Hotlink Protection: Make sure it is disabled or that your site domain is in the allowed list.',
                 '2. Check cPanel File Manager: Ensure the permissions for storage/app/public and its subfolders are set to 755.',
                 '3. Check cPanel File Manager: Ensure the permissions for image files (.png, .webp) are set to 644.'
             ]

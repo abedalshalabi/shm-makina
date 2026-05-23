@@ -59,7 +59,7 @@ class OrdersExport implements FromQuery, WithHeadings, WithMapping, WithStyles, 
         if (file_exists($logoPath)) {
             $drawing = new Drawing();
             $drawing->setName('Logo');
-            $drawing->setDescription('Ropita Logo');
+            $drawing->setDescription('Logo');
             $drawing->setPath($logoPath);
             $drawing->setHeight(100);
             $drawing->setCoordinates('B2');
