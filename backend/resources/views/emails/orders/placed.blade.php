@@ -58,11 +58,12 @@
             @php
                 $resolvedLogoSrc = (!empty($logoPath) && isset($message)) ? $message->embed($logoPath) : $logoUrl;
             @endphp
-            <img src="{{ $resolvedLogoSrc }}" alt="{{ $siteName }}" style="max-height:56px;max-width:180px;width:auto;">
+            <img src="{{ $resolvedLogoSrc }}" alt="{{ $siteName }}" style="max-height:85px;max-width:250px;width:auto;display:block;margin:0 auto 8px;">
+            <div style="font-size:20px;font-weight:700;color:#A32A2A;font-family:Arial,sans-serif;">{{ $siteName }}</div>
         </div>
 
         <div dir="rtl" class="email-card" style="background:#ffffff;border-radius:22px;overflow:hidden;border:1px solid #efe5e5;box-shadow:0 8px 30px rgba(163,42,42,.06);">
-            <div class="hero-block" style="background:linear-gradient(135deg,#A32A2A 0%,#525252 100%);padding:28px 24px;color:#ffffff;text-align:center;direction:rtl;">
+            <div class="hero-block" style="background:linear-gradient(135deg,#A32A2A 0%,#8A1F1F 100%);padding:28px 24px;color:#ffffff;text-align:center;direction:rtl;">
                 <div style="font-size:72px;line-height:1;margin-bottom:12px;">✓</div>
                 <h1 style="margin:0 0 8px;font-size:34px;font-weight:700;">{{ $recipientType === 'admin' ? 'تم استلام طلب جديد' : 'تم تأكيد طلبك بنجاح!' }}</h1>
                 <p style="margin:0;font-size:18px;opacity:.95;">
@@ -278,7 +279,7 @@
                     </a>
                 </div>
 
-                <div style="background:linear-gradient(135deg,#A32A2A 0%,#525252 100%);color:#ffffff;border-radius:18px;padding:22px;text-align:center;direction:rtl;">
+                <div style="background:linear-gradient(135deg,#A32A2A 0%,#8A1F1F 100%);color:#ffffff;border-radius:18px;padding:22px;text-align:center;direction:rtl;">
                     <div style="font-size:22px;font-weight:700;margin-bottom:8px;">شكراً لثقتك بنا!</div>
                     <div style="font-size:14px;opacity:.96;">
                         {{ $recipientType === 'admin' ? 'هذه النسخة مخصصة لمتابعة الطلب من لوحة الإدارة.' : 'نقدّر اختيارك لمتجر روبيتا ونتطلع لخدمتك مرة أخرى.' }}
