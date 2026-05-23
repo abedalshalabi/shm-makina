@@ -50,18 +50,6 @@ const Header = ({
   title,
   subtitle
 }: HeaderProps) => {
-  const parseCachedBottomNavLinks = () => {
-    if (!cachedBottomNavLinks) {
-      return undefined;
-    }
-
-    try {
-      return JSON.parse(cachedBottomNavLinks);
-    } catch {
-      return undefined;
-    }
-  };
-
   const { state } = useCart();
   const { wishlistIds } = useWishlist();
   const { headerLogo } = useSiteSettings();
@@ -72,38 +60,11 @@ const Header = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const headerRef = useRef<HTMLElement | null>(null);
-  // استخدام اللوجو المحفوظ مسبقاً كقيمة أولية لتجنب التأخير
-  const cachedLogo = typeof window !== 'undefined' ? (() => {
-    const val = localStorage.getItem('header_logo_cache');
-    if (val && (val.toLowerCase().includes('ropita') || val.includes('روبيتا'))) {
-      localStorage.removeItem('header_logo_cache');
-      return null;
-    }
-    return val;
-  })() : null;
-
-  const cachedTitle = typeof window !== 'undefined' ? (() => {
-    const val = localStorage.getItem('header_title_cache');
-    if (val && (val.toLowerCase().includes('ropita') || val.includes('روبيتا'))) {
-      localStorage.removeItem('header_title_cache');
-      return null;
-    }
-    return val;
-  })() : null;
-
-  const cachedBottomNavLinks = typeof window !== 'undefined' ? (() => {
-    const val = localStorage.getItem('header_bottom_nav_links_cache');
-    if (val && (val.toLowerCase().includes('ropita') || val.includes('روبيتا'))) {
-      localStorage.removeItem('header_bottom_nav_links_cache');
-      return null;
-    }
-    return val;
-  })() : null;
 
   const [settings, setSettings] = useState<HeaderSettings>({
-    header_logo: headerLogo || cachedLogo || undefined,
-    header_title: cachedTitle || undefined,
-    header_bottom_nav_links: parseCachedBottomNavLinks(),
+    header_logo: headerLogo || undefined,
+    header_title: undefined,
+    header_bottom_nav_links: undefined,
   });
   const [loading, setLoading] = useState(true);
 
@@ -186,16 +147,6 @@ const Header = ({
       if (response && response.data) {
         console.log("Header settings data:", response.data);
         console.log("Header menu items:", response.data.header_menu_items);
-        // حفظ اللوجو والعنوان في localStorage للتحميل السريع في المرة القادمة
-        if (response.data.header_logo) {
-          localStorage.setItem('header_logo_cache', response.data.header_logo);
-        }
-        if (response.data.header_title) {
-          localStorage.setItem('header_title_cache', response.data.header_title);
-        }
-        if (response.data.header_bottom_nav_links) {
-          localStorage.setItem('header_bottom_nav_links_cache', JSON.stringify(response.data.header_bottom_nav_links));
-        }
         setSettings(prev => ({
           ...response.data,
           header_logo: prev.header_logo,
@@ -204,9 +155,6 @@ const Header = ({
       } else if (response) {
         // If response is the data directly
         console.log("Header settings (direct):", response);
-        if (response.header_bottom_nav_links) {
-          localStorage.setItem('header_bottom_nav_links_cache', JSON.stringify(response.header_bottom_nav_links));
-        }
         setSettings(prev => ({
           ...response,
           header_logo: prev.header_logo,
