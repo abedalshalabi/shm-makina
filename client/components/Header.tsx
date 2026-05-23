@@ -265,10 +265,9 @@ const Header = ({
   };
 
   const getNavLinkClass = (path: string) =>
-    `flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm md:text-sm font-bold rounded-xl border transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
-      isActiveNavItem(path)
-        ? "bg-emerald-600 text-white border-emerald-700 shadow-md ring-2 ring-emerald-200"
-        : "bg-white text-gray-800 border-gray-200 shadow-sm hover:shadow hover:border-emerald-300 hover:text-emerald-700 hover:bg-emerald-50"
+    `flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm md:text-sm font-bold rounded-xl border transition-all duration-200 whitespace-nowrap flex-shrink-0 ${isActiveNavItem(path)
+      ? "bg-emerald-600 text-white border-emerald-700 shadow-md ring-2 ring-emerald-200"
+      : "bg-white text-gray-800 border-gray-200 shadow-sm hover:shadow hover:border-emerald-300 hover:text-emerald-700 hover:bg-emerald-50"
     }`;
 
   const bottomNavLinks = (settings.header_bottom_nav_links || []).filter((item) => {
@@ -294,9 +293,8 @@ const Header = ({
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-50 bg-white shadow-sm transition-transform duration-300 will-change-transform ${
-        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`sticky top-0 z-50 bg-white shadow-sm transition-transform duration-300 will-change-transform ${isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
     >
       {/* Announcement Banner */}
       {settings.header_announcement_text && (
@@ -511,8 +509,8 @@ const Header = ({
               </Link>
 
               <div className="relative group">
-                <Link 
-                  to={isAuthenticated ? "/dashboard" : "/login"} 
+                <Link
+                  to={isAuthenticated ? "/dashboard" : "/login"}
                   className={`flex items-center gap-2 p-1.5 sm:p-2 md:p-2.5 hover:bg-emerald-50 rounded-full transition-colors hidden sm:flex ${isAuthenticated ? 'text-emerald-600 bg-emerald-50/50' : 'text-gray-600'}`}
                 >
                   <div className="relative">
@@ -541,14 +539,14 @@ const Header = ({
 
                       {/* Menu Links */}
                       <div className="py-2">
-                        <Link 
-                          to="/dashboard" 
+                        <Link
+                          to="/dashboard"
                           className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors"
                         >
                           <Package className="w-4 h-4" />
                           <span>طلباتي ولوحة التحكم</span>
                         </Link>
-                        <button 
+                        <button
                           onClick={() => {
                             logout();
                             navigate('/');
@@ -668,7 +666,7 @@ const Header = ({
                       <Link to="/dashboard" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors py-1 text-sm font-medium">
                         <Package className="w-4 h-4" /> لوحة التحكم والطلبات
                       </Link>
-                      <button 
+                      <button
                         onClick={() => { logout(); setIsMenuOpen(false); navigate('/'); }}
                         className="flex items-center gap-3 text-red-600 hover:text-red-700 transition-colors py-1 text-sm font-bold"
                       >

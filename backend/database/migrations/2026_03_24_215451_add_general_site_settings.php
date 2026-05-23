@@ -12,10 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $appName = config('app.name', 'My Store');
         $settings = [
             [
                 'key' => 'site_name',
-                'value' => 'Ropita',
+                'value' => $appName,
                 'type' => 'text',
                 'group' => 'general',
                 'description' => 'اسم الموقع الرسمي',
@@ -24,7 +25,7 @@ return new class extends Migration
             ],
             [
                 'key' => 'site_tagline',
-                'value' => 'متجر ملابس وألعاب الأطفال',
+                'value' => 'متجر إلكتروني متكامل',
                 'type' => 'text',
                 'group' => 'general',
                 'description' => 'شعار الموقع (Tagline)',
@@ -33,7 +34,7 @@ return new class extends Migration
             ],
             [
                 'key' => 'footer_copyright',
-                'value' => '© 2025 Ropita. جميع الحقوق محفوظة.',
+                'value' => '© ' . date('Y') . ' ' . $appName . '. جميع الحقوق محفوظة.',
                 'type' => 'text',
                 'group' => 'footer',
                 'description' => 'نص حقوق النشر في التذييل',
@@ -42,7 +43,7 @@ return new class extends Migration
             ],
             [
                 'key' => 'footer_about_text',
-                'value' => 'روحيتا هو متجر متخصص في ملابس وألعاب الأطفال، نسعى لتقديم أفضل المنتجات بجودة عالية وأسعار منافسة.',
+                'value' => 'يقدم لكم متجر ' . $appName . ' أفضل المنتجات والخدمات بجودة عالية وأسعار منافسة.',
                 'type' => 'textarea',
                 'group' => 'footer',
                 'description' => 'نص "عن المتجر" في التذييل',
@@ -51,7 +52,7 @@ return new class extends Migration
             ],
             [
                 'key' => 'seo_meta_title',
-                'value' => 'Ropita - متجر ملابس وألعاب الأطفال',
+                'value' => $appName . ' - متجر إلكتروني',
                 'type' => 'text',
                 'group' => 'seo',
                 'description' => 'عنوان SEO الرئيسي',
@@ -60,7 +61,7 @@ return new class extends Migration
             ],
             [
                 'key' => 'seo_meta_description',
-                'value' => 'تسوق أفضل ملابس وألعاب الأطفال في متجر Ropita. جودة عالية وتوصيل سريع.',
+                'value' => 'تسوق أفضل المنتجات في متجر ' . $appName . '. جودة عالية وتوصيل سريع.',
                 'type' => 'textarea',
                 'group' => 'seo',
                 'description' => 'وصف SEO للمحركات',
@@ -69,7 +70,7 @@ return new class extends Migration
             ],
             [
                 'key' => 'seo_meta_keywords',
-                'value' => 'ملابس أطفال, ألعاب أطفال, تسوق, Ropita',
+                'value' => $appName . ', تسوق, متجر إلكتروني',
                 'type' => 'text',
                 'group' => 'seo',
                 'description' => 'كلمات SEO المفتاحية',
@@ -79,10 +80,9 @@ return new class extends Migration
         ];
 
         foreach ($settings as $setting) {
-            DB::table('site_settings')->updateOrInsert(
-                ['key' => $setting['key']],
-                $setting
-            );
+            if (!DB::table('site_settings')->where('key', $setting['key'])->exists()) {
+                DB::table('site_settings')->insert($setting);
+            }
         }
     }
 
