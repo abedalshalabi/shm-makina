@@ -83,10 +83,10 @@ const Checkout = () => {
 
   // Calculate subtotal from items to ensure accuracy
   const subtotal = state.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const shippingCost = (selectedCity && selectedCity.free_shipping_threshold && subtotal >= Number(selectedCity.free_shipping_threshold)) ? 0 : (selectedCity ? Number(selectedCity.shipping_cost) : null);
+  const shippingCost = (selectedCity && selectedCity.free_shipping_threshold && Number(selectedCity.free_shipping_threshold) > 0 && subtotal >= Number(selectedCity.free_shipping_threshold)) ? 0 : (selectedCity ? Number(selectedCity.shipping_cost) : null);
   const finalTotal = Number(subtotal) + Number(shippingCost ?? 0);
   const canSubmitOrder = !isSubmitting && !!selectedCity;
-  const isFreeShippingAchieved = !!(selectedCity && selectedCity.free_shipping_threshold && subtotal >= Number(selectedCity.free_shipping_threshold));
+  const isFreeShippingAchieved = !!(selectedCity && selectedCity.free_shipping_threshold && Number(selectedCity.free_shipping_threshold) > 0 && subtotal >= Number(selectedCity.free_shipping_threshold));
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
