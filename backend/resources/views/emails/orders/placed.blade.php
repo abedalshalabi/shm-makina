@@ -67,7 +67,7 @@
                 <div style="font-size:72px;line-height:1;margin-bottom:12px;">✓</div>
                 <h1 style="margin:0 0 8px;font-size:34px;font-weight:700;">{{ $recipientType === 'admin' ? 'تم استلام طلب جديد' : 'تم تأكيد طلبك بنجاح!' }}</h1>
                 <p style="margin:0;font-size:18px;opacity:.95;">
-                    {{ $recipientType === 'admin' ? 'تم إنشاء طلب جديد في متجر روبيتا' : 'شكراً لك على التسوق معنا' }}
+                    {{ $recipientType === 'admin' ? "تم إنشاء طلب جديد في {$siteName}" : 'شكراً لك على التسوق معنا' }}
                 </p>
             </div>
 
@@ -282,7 +282,7 @@
                 <div style="background:linear-gradient(135deg,#A32A2A 0%,#8A1F1F 100%);color:#ffffff;border-radius:18px;padding:22px;text-align:center;direction:rtl;">
                     <div style="font-size:22px;font-weight:700;margin-bottom:8px;">شكراً لثقتك بنا!</div>
                     <div style="font-size:14px;opacity:.96;">
-                        {{ $recipientType === 'admin' ? 'هذه النسخة مخصصة لمتابعة الطلب من لوحة الإدارة.' : 'نقدّر اختيارك لمتجر روبيتا ونتطلع لخدمتك مرة أخرى.' }}
+                        {{ $recipientType === 'admin' ? 'هذه النسخة مخصصة لمتابعة الطلب من لوحة الإدارة.' : "نقدّر اختيارك لـ {$siteName} ونتطلع لخدمتك مرة أخرى." }}
                     </div>
                 </div>
             </div>
