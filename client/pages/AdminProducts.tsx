@@ -53,6 +53,7 @@ interface Product {
   in_stock: boolean;
   is_featured: boolean;
   is_active: boolean;
+  cover_image?: string | null;
   category?: {
     id: number;
     name: string;
@@ -384,12 +385,20 @@ const AdminProducts = () => {
   }, [showImportModal, importSource, loadImportInbox]);
 
   const getProductThumbnail = (product: Product): string => {
-    const firstImage = product.images?.[0];
-    if (!firstImage?.image_url) {
-      return "/placeholder.svg";
+    if (product.cover_image) {
+      return product.cover_image.startsWith('http')
+        ? product.cover_image
+        : (getStorageUrl(product.cover_image) || "/placeholder.svg");
     }
 
-    return getStorageUrl(firstImage.image_url) || "/placeholder.svg";
+    const firstImage = product.images?.[0];
+    if (firstImage?.image_url) {
+      return firstImage.image_url.startsWith('http')
+        ? firstImage.image_url
+        : (getStorageUrl(firstImage.image_url) || "/placeholder.svg");
+    }
+
+    return "/placeholder.svg";
   };
 
   useEffect(() => {
@@ -1411,11 +1420,11 @@ const AdminProducts = () => {
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="flex items-center">
                                   <div className="flex-shrink-0 h-12 w-12">
-                                    {product.images?.[0] ? (
+                                    {product.cover_image || product.images?.[0] ? (
                                       <img
                                         className="h-12 w-12 rounded-lg object-cover"
                                         src={getProductThumbnail(product)}
-                                        alt={product.images[0].alt_text || product.name}
+                                        alt={(product.images && product.images[0]?.alt_text) || product.name}
                                         onError={(e) => {
                                           e.currentTarget.src = '/placeholder.svg';
                                         }}
@@ -1693,10 +1702,10 @@ const AdminProducts = () => {
                       >
                         {/* Product Image */}
                         <div className={`${viewMode === "grid" ? "aspect-square" : "w-32 h-32"} bg-gray-100 relative group`}>
-                          {product.images?.[0] ? (
+                          {product.cover_image || product.images?.[0] ? (
                             <img
                               src={getProductThumbnail(product)}
-                              alt={product.images[0].alt_text || product.name}
+                              alt={(product.images && product.images[0]?.alt_text) || product.name}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                               onError={(e) => {
                                 e.currentTarget.src = '/placeholder.svg';
