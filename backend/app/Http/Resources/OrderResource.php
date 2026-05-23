@@ -112,7 +112,7 @@ class OrderResource extends JsonResource
                             'name' => $item->product->name,
                             'slug' => $item->product->slug,
                             'image' => $this->getVariantPrimaryImage($item->productVariant)
-                                ?: $this->getProductPrimaryImage($item->product->images),
+                                ?: ($this->getProductPrimaryImage($item->product->images) ?? MediaUrl::publicUrl($item->product->cover_image)),
                         ] : null,
                     ];
                 });
