@@ -31,7 +31,21 @@ export const useSiteSettings = () => useContext(SiteSettingsContext);
 export const SiteSettingsProvider = ({ children }: { children: ReactNode }) => {
   // استخدام localStorage للتحميل الفوري بدون تأخير
   const cached = typeof window !== "undefined"
-    ? JSON.parse(localStorage.getItem("site_general_settings") || "{}")
+    ? (() => {
+        try {
+          const item = localStorage.getItem("site_general_settings");
+          if (!item) return {};
+          const parsed = JSON.parse(item);
+          const name = parsed?.site_name || "";
+          if (name.toLowerCase().includes("ropita") || name.includes("روبيتا")) {
+            localStorage.removeItem("site_general_settings");
+            return {};
+          }
+          return parsed;
+        } catch {
+          return {};
+        }
+      })()
     : {};
 
   const [siteSettings, setSiteSettings] = useState<SiteSettings>(cached);

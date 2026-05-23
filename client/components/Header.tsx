@@ -73,9 +73,33 @@ const Header = ({
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const headerRef = useRef<HTMLElement | null>(null);
   // استخدام اللوجو المحفوظ مسبقاً كقيمة أولية لتجنب التأخير
-  const cachedLogo = typeof window !== 'undefined' ? localStorage.getItem('header_logo_cache') : null;
-  const cachedTitle = typeof window !== 'undefined' ? localStorage.getItem('header_title_cache') : null;
-  const cachedBottomNavLinks = typeof window !== 'undefined' ? localStorage.getItem('header_bottom_nav_links_cache') : null;
+  const cachedLogo = typeof window !== 'undefined' ? (() => {
+    const val = localStorage.getItem('header_logo_cache');
+    if (val && (val.toLowerCase().includes('ropita') || val.includes('روبيتا'))) {
+      localStorage.removeItem('header_logo_cache');
+      return null;
+    }
+    return val;
+  })() : null;
+
+  const cachedTitle = typeof window !== 'undefined' ? (() => {
+    const val = localStorage.getItem('header_title_cache');
+    if (val && (val.toLowerCase().includes('ropita') || val.includes('روبيتا'))) {
+      localStorage.removeItem('header_title_cache');
+      return null;
+    }
+    return val;
+  })() : null;
+
+  const cachedBottomNavLinks = typeof window !== 'undefined' ? (() => {
+    const val = localStorage.getItem('header_bottom_nav_links_cache');
+    if (val && (val.toLowerCase().includes('ropita') || val.includes('روبيتا'))) {
+      localStorage.removeItem('header_bottom_nav_links_cache');
+      return null;
+    }
+    return val;
+  })() : null;
+
   const [settings, setSettings] = useState<HeaderSettings>({
     header_logo: headerLogo || cachedLogo || undefined,
     header_title: cachedTitle || undefined,

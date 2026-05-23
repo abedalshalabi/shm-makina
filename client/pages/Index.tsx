@@ -1147,7 +1147,7 @@ const Index = () => {
               <div className="flex items-center gap-3 mb-6">
                 <img
                   src={getStorageUrl(headerLogo) || "/logo.webp"}
-                  alt={siteName || "روبيتا"}
+                  alt={siteName || generalSettings.site_name || ""}
                   className="h-8 w-auto"
                 />
                 <div>
